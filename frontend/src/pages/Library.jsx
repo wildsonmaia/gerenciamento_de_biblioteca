@@ -5,20 +5,19 @@ import RemoveBookModal from '../components/RemoveBookModal';
 import axios from 'axios'
 
 const Library = () => {
-  const [books, setBooks] = useState([]);
-  
+  const [books, setBooks] = useState([]);  
 
-  useEffect(() => {
-    const fetchBooks = async () => {
-      try {
-        const response = await axios.get('http://localhost:3000/livros')
-        setBooks(response.data)
-      } catch (error) {
-        console.error('Erro ao buscar livros:', error)
-      }
+  const listBooks = async () => {
+    try {
+      const response = await axios.get('http://localhost:3000/livros')
+      setBooks(response.data)
+    } catch (error) {
+      console.error('Erro ao buscar livros:', error)
     }
+  }
 
-    fetchBooks()
+  useEffect(() => {   
+    listBooks()
   }, [])
 
   const [searchTerm, setSearchTerm] = useState('');
@@ -27,18 +26,16 @@ const Library = () => {
   const [ showRemoveModal, setShowRemoveModal ] = useState(false)
 
   // Função para adicionar um novo livro
-  const addBook = () => {
-    const newBook = {
-      id: books.length + 1,
-      code: `B00${books.length + 1}`,
-      title: 'Novo Livro',
-      author: 'Autor Desconhecido',
-      year: new Date().getFullYear(),
-      category: 'Fantasia',
-      disponibility: true,
-    };
-    setBooks([...books, newBook]);
-    closeAddModal()
+  const addBook = async (newBook) => {
+    try {
+      const response = await axios.post('http://localhost:3000/livros', newBook);
+      setBooks([...books, response.data]);
+      closeAddModal();
+    } catch (error) {
+      console.error('Erro ao adicionar livro:', error);
+    }
+
+    listBooks()
   };
 
   // Função para remover o último livro
@@ -50,9 +47,10 @@ const Library = () => {
 
   // Filtrar os livros com base na barra de pesquisa e no seletor de filtro
   const filteredBooks = books.filter((book) => {
-    const matchesSearch = book.title.toLowerCase().includes(searchTerm.toLowerCase());
+    return book
+    /* const matchesSearch = book.title.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesFilter = filter === 'all' || book.category === filter;
-    return matchesSearch && matchesFilter;
+    return matchesSearch && matchesFilter; */
   });
 
   function closeAddModal(){
@@ -141,9 +139,10 @@ const Library = () => {
         gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
         gap: '20px',
       }}>
-        {filteredBooks.map((book) => (
+        {
+        filteredBooks.map((book, index) => (
           <BookCard
-            key={book.id}
+            key={index}
             book={book}
           />
         ))}
