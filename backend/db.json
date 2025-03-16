@@ -1,137 +1,122 @@
 [
     {
         "id": "1",
-        "titulo": "Dom Casmurro",
-        "autor": "Machado de Assis",
-        "anoPublicacao": 1899,
-        "codigo": "001",
-        "disponibilidade": true,
-        "reservado": false
+        "title": "Dom Casmurro",
+        "author": "Machado de Assis",
+        "year": 1899,
+        "code": "001",
+        "disponibility": true
     },
     {
         "id": "2",
-        "titulo": "O Alquimista",
-        "autor": "Paulo Coelho",
-        "anoPublicacao": 1988,
-        "codigo": "002",
-        "disponibilidade": false,
-        "reservado": false
+        "title": "O Alquimista",
+        "author": "Paulo Coelho",
+        "year": 1988,
+        "code": "002",
+        "disponibility": false
     },
     {
         "id": "3",
-        "titulo": "Grande Sertão: Veredas",
-        "autor": "João Guimarães Rosa",
-        "anoPublicacao": 1956,
-        "codigo": "003",
-        "disponibilidade": true,
-        "reservado": false
+        "title": "Grande Sertão: Veredas",
+        "author": "João Guimarães Rosa",
+        "year": 1956,
+        "code": "003",
+        "disponibility": true
     },
     {
         "id": "4",
-        "titulo": "Memórias Póstumas de Brás Cubas",
-        "autor": "Machado de Assis",
-        "anoPublicacao": 1881,
-        "codigo": "004",
-        "disponibilidade": true,
-        "reservado": false
+        "title": "Memórias Póstumas de Brás Cubas",
+        "author": "Machado de Assis",
+        "year": 1881,
+        "code": "004",
+        "disponibility": true
     },
     {
         "id": "5",
-        "titulo": "A Moreninha",
-        "autor": "Joaquim Manuel de Macedo",
-        "anoPublicacao": 1844,
-        "codigo": "005",
-        "disponibilidade": false,
-        "reservado": false
+        "title": "A Moreninha",
+        "author": "Joaquim Manuel de Macedo",
+        "year": 1844,
+        "code": "005",
+        "disponibility": false
     },
     {
         "id": "6",
-        "titulo": "Iracema",
-        "autor": "José de Alencar",
-        "anoPublicacao": 1865,
-        "codigo": "006",
-        "disponibilidade": true,
-        "reservado": false
+        "title": "Iracema",
+        "author": "José de Alencar",
+        "year": 1865,
+        "code": "006",
+        "disponibility": true
     },
     {
         "id": "7",
-        "titulo": "Capitães da Areia",
-        "autor": "Jorge Amado",
-        "anoPublicacao": 1937,
-        "codigo": "007",
-        "disponibilidade": false,
-        "reservado": false
+        "title": "Capitães da Areia",
+        "author": "Jorge Amado",
+        "year": 1937,
+        "code": "007",
+        "disponibility": false
     },
     {
         "id": "8",
-        "titulo": "Vidas Secas",
-        "autor": "Graciliano Ramos",
-        "anoPublicacao": 1938,
-        "codigo": "008",
-        "disponibilidade": true,
-        "reservado": false
+        "title": "Vidas Secas",
+        "author": "Graciliano Ramos",
+        "year": 1938,
+        "code": "008",
+        "disponibility": true
     },
     {
         "id": "9",
-        "titulo": "O Guarani",
-        "autor": "José de Alencar",
-        "anoPublicacao": 1857,
-        "codigo": "009",
-        "disponibilidade": true,
-        "reservado": false
+        "title": "O Guarani",
+        "author": "José de Alencar",
+        "year": 1857,
+        "code": "009",
+        "disponibility": true
     },
     {
         "id": "10",
-        "titulo": "Senhora",
-        "autor": "José de Alencar",
-        "anoPublicacao": 1875,
-        "codigo": "010",
-        "disponibilidade": false,
-        "reservado": false
+        "title": "Senhora",
+        "author": "José de Alencar",
+        "year": 1875,
+        "code": "010",
+        "disponibility": false
     },
     {
         "id": "11",
-        "titulo": "O Cortiço",
-        "autor": "Aluísio Azevedo",
-        "anoPublicacao": 1890,
-        "codigo": "011",
-        "disponibilidade": true,
-        "reservado": false
+        "title": "O Cortiço",
+        "author": "Aluísio Azevedo",
+        "year": 1890,
+        "code": "011",
+        "disponibility": true
     },
     {
         "id": "12",
-        "titulo": "A Escrava Isaura",
-        "autor": "Bernardo Guimarães",
-        "anoPublicacao": 1875,
-        "codigo": "012",
-        "disponibilidade": false,
-        "reservado": false
+        "title": "A Escrava Isaura",
+        "author": "Bernardo Guimarães",
+        "year": 1875,
+        "code": "012",
+        "disponibility": false
     },
     {
         "id": "13",
-        "titulo": "Triste Fim de Policarpo Quaresma",
-        "autor": "Lima Barreto",
-        "anoPublicacao": 1915,
-        "codigo": "013",
-        "disponibilidade": true,
-        "reservado": false
+        "title": "Triste Fim de Policarpo Quaresma",
+        "author": "Lima Barreto",
+        "year": 1915,
+        "code": "013",
+        "disponibility": true
     },
     {
         "id": "14",
-        "titulo": "Macunaíma",
-        "autor": "Mário de Andrade",
-        "anoPublicacao": 1928,
-        "codigo": "014",
-        "disponibilidade": true,
-        "reservado": false
+        "title": "Macunaíma",
+        "author": "Mário de Andrade",
+        "year": 1928,
+        "code": "014",
+        "disponibility": true
     },
     {
         "id": "15",
-        "titulo": "A Hora da Estrela",
-        "autor": "Clarice Lispector",
-        "anoPublicacao": 1977,
-        "codigo": "015",
-        "disponibilidade": false,
-        "reservado": false
+        "title": "A Hora da Estrela",
+        "author": "Clarice Lispector",
+        "year": 1977,
+        "code": "015",
+        "disponibility": false
     }
 ]

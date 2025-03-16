@@ -15,7 +15,6 @@ const BookCard = ({ book, onBorrow, onReturn }) => {
       <p><strong>Código:</strong> {book.code}</p>
       <p><strong>Autor:</strong> {book.author}</p>
       <p><strong>Ano:</strong> {book.year}</p>
-      <p><strong>Categoria:</strong> {book.category}</p>
       <p><strong>Disponível:</strong> {book.disponibility ? 'Sim' : 'Não'}</p>
 
       {/* Botões de Emprestar e Devolver */}

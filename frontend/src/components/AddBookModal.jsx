@@ -38,6 +38,17 @@ const AddBookModal = ({ visibility, onClose, onAdd }) => {
         />
         <input
           type="text"
+          placeholder="Código"
+          style={{
+            width: '90%',
+            padding: '10px',
+            marginBottom: '10px',
+            border: '1px solid #ccc',
+            borderRadius: '5px',
+          }}
+        />
+        <input
+          type="text"
           placeholder="Autor"
           style={{
             width: '90%',
@@ -60,7 +71,7 @@ const AddBookModal = ({ visibility, onClose, onAdd }) => {
         />
         <input
           type="text"
-          placeholder="Categoria"
+          placeholder="Disponibilidade"
           style={{
             width: '90%',
             padding: '10px',

@@ -1,16 +1,25 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import BookCard from '../components/BookCard';
 import AddBookModal from '../components/AddBookModal';
 import RemoveBookModal from '../components/RemoveBookModal';
+import axios from 'axios'
 
 const Library = () => {
-  const [books, setBooks] = useState([
-    { id: 1, code: 'B001', title: 'O Senhor dos Anéis', author: 'J.R.R. Tolkien', year: 1954, category: 'Fantasia', disponibility: true },
-    { id: 2, code: 'B002', title: '1984', author: 'George Orwell', year: 1949, category: 'Ficção Científica', disponibility: false },
-    { id: 3, code: 'B003', title: 'Dom Casmurro', author: 'Machado de Assis', year: 1899, category: 'Clássico', disponibility: true },
-    { id: 4, code: 'B004', title: 'Harry Potter', author: 'J.K. Rowling', year: 1997, category: 'Fantasia', disponibility: false },
-    { id: 5, code: 'B005', title: 'A Revolução dos Bichos', author: 'George Orwell', year: 1945, category: 'Ficção Científica', disponibility: true },
-  ]);
+  const [books, setBooks] = useState([]);
+  
+
+  useEffect(() => {
+    const fetchBooks = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/livros')
+        setBooks(response.data)
+      } catch (error) {
+        console.error('Erro ao buscar livros:', error)
+      }
+    }
+
+    fetchBooks()
+  }, [])
 
   const [searchTerm, setSearchTerm] = useState('');
   const [filter, setFilter] = useState('all');
