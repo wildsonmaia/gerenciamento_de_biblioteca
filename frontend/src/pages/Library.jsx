@@ -36,6 +36,7 @@ const Library = () => {
     }
 
     listBooks()
+    
   };
 
   // Função para remover o último livro
