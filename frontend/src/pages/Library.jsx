@@ -3,9 +3,12 @@ import BookCard from '../components/BookCard';
 import AddBookModal from '../components/AddBookModal';
 import RemoveBookModal from '../components/RemoveBookModal';
 import axios from 'axios'
+import LendBookModal from '../components/LendBookModal';
 
 const Library = () => {
-  const [books, setBooks] = useState([]);  
+  const [books, setBooks] = useState([]);
+  let [selectedBook, setSelectedBook] = useState(null);
+  const [ showLendBookModal, setShowLendBookModal ] = useState(false)
 
   const listBooks = async () => {
     try {
@@ -64,6 +67,27 @@ const Library = () => {
       console.error('Erro ao remover livro:', error);
     }
     listBooks()
+  };
+
+  const lendBook = async (bookId) => {
+    try {
+      // Encontra o livro a ser emprestado
+      const bookToLend = books.find((book) => book.id === bookId);
+      if (!bookToLend || !bookToLend.disponibility) {
+        alert('Este livro não está disponível para empréstimo.');
+        return;
+      }
+  
+      // Atualiza a disponibilidade do livro para "false"
+      const updatedBook = { ...bookToLend, disponibility: false };
+      await axios.put(`http://localhost:3000/livros/${bookId}`, updatedBook);
+  
+      // Atualiza o estado local com o livro atualizado
+      setBooks(books.map((book) => (book.id === bookId ? updatedBook : book)));
+      /* alert(`O livro "${bookToLend.title}" foi emprestado com sucesso.`); */
+    } catch (error) {
+      console.error('Erro ao emprestar livro:', error);
+    }
   };
 
   return (
@@ -144,6 +168,10 @@ const Library = () => {
           <BookCard
             key={index}
             book={book}
+            onBorrow={() => {
+              setSelectedBook(book); // Define o livro selecionado
+        setShowLendBookModal(true);
+            }}
           />
         ))}
       </div>
@@ -160,8 +188,19 @@ const Library = () => {
         onClose={closeRemoveModal} 
         onRemove={removeBook}
         books={books} 
-      />
+        />
       }
+      {showLendBookModal && (
+        <LendBookModal
+          visibility={showLendBookModal}
+          onClose={() => setShowLendBookModal(false)}
+          onLend={(bookId) => {
+            lendBook(bookId); // Função para emprestar o livro
+            setShowLendBookModal(false); // Fecha o modal após o empréstimo
+          }}
+          book={selectedBook} // Passa o livro selecionado para o modal
+        />
+      )}
     </div>
   );
 };

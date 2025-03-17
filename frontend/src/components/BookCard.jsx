@@ -21,7 +21,7 @@ const BookCard = ({ book, onBorrow, onReturn }) => {
       <div style={{ marginTop: '10px' }}>
         {book.disponibility ? (
           <button
-            onClick={() => onBorrow(book.id)}
+            onClick={onBorrow}
             style={{
               padding: '10px 15px',
               fontSize: '14px',
