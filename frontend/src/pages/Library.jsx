@@ -39,13 +39,6 @@ const Library = () => {
     
   };
 
-  // Função para remover o último livro
-  const removeLastBook = () => {
-    if (books.length > 0) {
-      setBooks(books.slice(0, -1));
-    }
-  };
-
   // Filtrar os livros com base na barra de pesquisa e no seletor de filtro
   const filteredBooks = books.filter((book) => {
     return book
@@ -62,10 +55,16 @@ const Library = () => {
     setShowRemoveModal(false)
   }
 
-  function removeBook(){
-    removeLastBook()
-    closeRemoveModal()
-  }
+  const removeBook = async (bookId) => {
+    try {
+      await axios.delete(`http://localhost:3000/livros/${bookId}`);
+      setBooks(books.filter((book) => book.id !== bookId)); // Remove o livro do estado local
+      closeRemoveModal();
+    } catch (error) {
+      console.error('Erro ao remover livro:', error);
+    }
+    listBooks()
+  };
 
   return (
     <div style={{ padding: '20px' }}>
@@ -157,10 +156,11 @@ const Library = () => {
       }
       {showRemoveModal && 
         <RemoveBookModal 
-          visibility={showRemoveModal} 
-          onClose={closeRemoveModal} 
-          onRemove={removeBook} 
-        />
+        visibility={showRemoveModal} 
+        onClose={closeRemoveModal} 
+        onRemove={removeBook}
+        books={books} 
+      />
       }
     </div>
   );
