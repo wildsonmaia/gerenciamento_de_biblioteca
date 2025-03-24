@@ -1,6 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const RemoveBookModal = ({ visibility, onClose, onRemove }) => {
+const RemoveBookModal = ({ visibility, onClose, onRemove, books }) => {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filter, setFilter] = useState('all'); // Estado para o filtro
+
+  // Filtra os livros com base no termo de pesquisa e no filtro selecionado
+  const filteredBooks = books.filter((book) => {
+    const matchesSearch = searchTerm
+      ? filter === 'all' || filter === 'title'
+        ? book.title.toLowerCase().includes(searchTerm.toLowerCase())
+        : filter === 'author'
+        ? book.author.toLowerCase().includes(searchTerm.toLowerCase())
+        : filter === 'year'
+        ? book.year.toString().includes(searchTerm)
+        : filter === 'code'
+        ? book.code.toLowerCase().includes(searchTerm.toLowerCase())
+        : false
+      : true;
+
+    return matchesSearch;
+  });
+
   if (!visibility) return null;
 
   return (
@@ -28,6 +48,8 @@ const RemoveBookModal = ({ visibility, onClose, onRemove }) => {
         <input
           type="text"
           placeholder="Buscar livro..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
           style={{
             width: '90%',
             padding: '10px',
@@ -36,36 +58,79 @@ const RemoveBookModal = ({ visibility, onClose, onRemove }) => {
             borderRadius: '5px',
           }}
         />
-        <div style={{ marginTop: '20px', display: 'flex', justifyContent: 'space-between', padding: '10px' }}>
-          <button
-            onClick={onClose}
-            style={{
-              padding: '10px 15px',
-              fontSize: '14px',
-              backgroundColor: '#6c757d',
-              color: '#fff',
-              border: 'none',
-              borderRadius: '5px',
-              cursor: 'pointer',
-            }}
-          >
-            Cancelar
-          </button>
-          <button
-            onClick={onRemove}
-            style={{
-              padding: '10px 15px',
-              fontSize: '14px',
-              backgroundColor: '#dc3545',
-              color: '#fff',
-              border: 'none',
-              borderRadius: '5px',
-              cursor: 'pointer',
-            }}
-          >
-            Remover
-          </button>
+        <select
+          value={filter}
+          onChange={(e) => setFilter(e.target.value)}
+          style={{
+            width: '90%',
+            padding: '10px',
+            marginBottom: '10px',
+            border: '1px solid #ccc',
+            borderRadius: '5px',
+          }}
+        >
+          <option value="all">Todos</option>
+          <option value="title">Título</option>
+          <option value="author">Autor</option>
+          <option value="year">Ano</option>
+          <option value="code">Código</option>
+        </select>
+        <div style={{
+          height: '150px',
+          overflowY: 'auto',
+          marginBottom: '10px',
+          border: '1px solid #ccc',
+          borderRadius: '5px',
+          padding: '10px',
+        }}>
+          {filteredBooks.length > 0 ? (
+            filteredBooks.map((book, index) => (
+              <div
+                key={book.id}
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  marginBottom: '5px',
+                  padding: '5px',
+                  borderBottom: '1px solid #eee',
+                }}
+              >
+                <span>{book.title}</span>
+                <button
+                  onClick={() => onRemove(book.id)}
+                  style={{
+                    padding: '5px 10px',
+                    fontSize: '12px',
+                    backgroundColor: '#dc3545',
+                    color: '#fff',
+                    border: 'none',
+                    borderRadius: '5px',
+                    cursor: 'pointer',
+                  }}
+                >
+                  Remover
+                </button>
+              </div>
+            ))
+          ) : (
+            <p style={{ color: '#888' }}>Nenhum livro encontrado.</p>
+          )}
         </div>
+        <button
+          onClick={onClose}
+          style={{
+            padding: '10px 15px',
+            fontSize: '14px',
+            backgroundColor: '#6c757d',
+            color: '#fff',
+            border: 'none',
+            borderRadius: '5px',
+            cursor: 'pointer',
+          }}
+        >
+          Cancelar
+        </button>
       </div>
     </div>
   );
