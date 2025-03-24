@@ -2,46 +2,71 @@ import React, { useEffect, useState } from 'react';
 import BookCard from '../components/BookCard';
 import AddBookModal from '../components/AddBookModal';
 import RemoveBookModal from '../components/RemoveBookModal';
-import axios from 'axios'
 import LendBookModal from '../components/LendBookModal';
+import axios from 'axios'
+import UpdateBookModal from '../components/UpdateBookModal';
 
 const Library = () => {
+
   const [books, setBooks] = useState([]);
   let [selectedBook, setSelectedBook] = useState(null);
   const [ showLendBookModal, setShowLendBookModal ] = useState(false)
-
-  const listBooks = async () => {
-    try {
-      const response = await axios.get('http://localhost:3000/livros')
-      setBooks(response.data)
-    } catch (error) {
-      console.error('Erro ao buscar livros:', error)
-    }
-  }
-
-  useEffect(() => {   
-    listBooks()
-  }, [])
 
   const [searchTerm, setSearchTerm] = useState('');
   const [filter, setFilter] = useState('all');
   const [ showAddModal, setShowAddModal ] = useState(false)
   const [ showRemoveModal, setShowRemoveModal ] = useState(false)
+  const [ showUpdateModal, setShowUpdateModal ] = useState(false);
+
+  // Função Listar Livros
+  async function listBooks() {
+    try {
+      const response = await axios.get('http://localhost:3000/livros');
+      setBooks(response.data);
+      console.log(response);
+    } catch (error) {
+      console.error('Erro ao buscar livros:', error);
+    }
+  }
+
+  // Função Listar Livros ao Recarregar a Página
+  useEffect(() => {   
+    listBooks()
+  }, [])
 
   // Função para adicionar um novo livro
-  const addBook = async (newBook) => {
+  async function addBook(newBook){
     try {
-      const response = await axios.post('http://localhost:3000/livros', newBook);
-      setBooks([...books, response.data]);
+      console.log(newBook)
+      await axios.post('http://localhost:3000/livros', newBook);
       closeAddModal();
     } catch (error) {
       console.error('Erro ao adicionar livro:', error);
     }
 
-    listBooks()
-    
+    listBooks()    
   };
 
+  async function updateBook(updatedBook){
+    try {
+      await axios.put(`http://localhost:3000/livros/${updatedBook.id}`, updatedBook);
+      closeUpdateModal();
+      listBooks()
+
+    } catch (error) {
+      console.error('Erro ao atualizar livro:', error);
+    }
+  }
+
+  async function removeBook(bookId){
+    try {
+      await axios.delete(`http://localhost:3000/livros/${bookId}`);
+      closeRemoveModal();
+    } catch (error) {
+      console.error('Erro ao remover livro:', error);
+    }
+    listBooks()
+  };
   // Filtrar os livros com base na barra de pesquisa e no seletor de filtro
   const filteredBooks = books.filter((book) => {
     return book
@@ -58,16 +83,9 @@ const Library = () => {
     setShowRemoveModal(false)
   }
 
-  const removeBook = async (bookId) => {
-    try {
-      await axios.delete(`http://localhost:3000/livros/${bookId}`);
-      setBooks(books.filter((book) => book.id !== bookId)); // Remove o livro do estado local
-      closeRemoveModal();
-    } catch (error) {
-      console.error('Erro ao remover livro:', error);
-    }
-    listBooks()
-  };
+  function closeUpdateModal(){
+    setShowUpdateModal(false)
+  }
 
   const lendBook = async (bookId) => {
     try {
@@ -142,7 +160,7 @@ const Library = () => {
           Adicionar Livro
         </button>
         <button
-          onClick={() => setShowRemoveModal(!showRemoveModal)}
+          onClick={() => setShowRemoveModal(true)}
           style={{
             padding: '10px 15px',
             fontSize: '16px',
@@ -170,7 +188,11 @@ const Library = () => {
             book={book}
             onBorrow={() => {
               setSelectedBook(book); // Define o livro selecionado
-        setShowLendBookModal(true);
+              setShowLendBookModal(true);
+            }}
+            onUpdate={() => {
+              setSelectedBook(book)
+              setShowUpdateModal(true)
             }}
           />
         ))}
@@ -188,6 +210,14 @@ const Library = () => {
         onClose={closeRemoveModal} 
         onRemove={removeBook}
         books={books} 
+        />
+      }
+      {showUpdateModal && 
+        <UpdateBookModal
+          visibility={showUpdateModal} 
+          onClose={closeUpdateModal} 
+          onUpdate={updateBook}
+          book={selectedBook}
         />
       }
       {showLendBookModal && (

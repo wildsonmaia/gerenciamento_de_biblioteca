@@ -1,122 +1,122 @@
 [
-    {
-        "id": "1",
-        "title": "Dom Casmurro",
-        "author": "Machado de Assis",
-        "year": 1899,
-        "code": "001",
-        "disponibility": true
-    },
-    {
-        "id": "2",
-        "title": "O Alquimista",
-        "author": "Paulo Coelho",
-        "year": 1988,
-        "code": "002",
-        "disponibility": false
-    },
-    {
-        "id": "3",
-        "title": "Grande Sertão: Veredas",
-        "author": "João Guimarães Rosa",
-        "year": 1956,
-        "code": "003",
-        "disponibility": true
-    },
-    {
-        "id": "4",
-        "title": "Memórias Póstumas de Brás Cubas",
-        "author": "Machado de Assis",
-        "year": 1881,
-        "code": "004",
-        "disponibility": true
-    },
-    {
-        "id": "5",
-        "title": "A Moreninha",
-        "author": "Joaquim Manuel de Macedo",
-        "year": 1844,
-        "code": "005",
-        "disponibility": false
-    },
-    {
-        "id": "6",
-        "title": "Iracema",
-        "author": "José de Alencar",
-        "year": 1865,
-        "code": "006",
-        "disponibility": true
-    },
-    {
-        "id": "7",
-        "title": "Capitães da Areia",
-        "author": "Jorge Amado",
-        "year": 1937,
-        "code": "007",
-        "disponibility": false
-    },
-    {
-        "id": "8",
-        "title": "Vidas Secas",
-        "author": "Graciliano Ramos",
-        "year": 1938,
-        "code": "008",
-        "disponibility": true
-    },
-    {
-        "id": "9",
-        "title": "O Guarani",
-        "author": "José de Alencar",
-        "year": 1857,
-        "code": "009",
-        "disponibility": true
-    },
-    {
-        "id": "10",
-        "title": "Senhora",
-        "author": "José de Alencar",
-        "year": 1875,
-        "code": "010",
-        "disponibility": false
-    },
-    {
-        "id": "11",
-        "title": "O Cortiço",
-        "author": "Aluísio Azevedo",
-        "year": 1890,
-        "code": "011",
-        "disponibility": true
-    },
-    {
-        "id": "12",
-        "title": "A Escrava Isaura",
-        "author": "Bernardo Guimarães",
-        "year": 1875,
-        "code": "012",
-        "disponibility": false
-    },
-    {
-        "id": "13",
-        "title": "Triste Fim de Policarpo Quaresma",
-        "author": "Lima Barreto",
-        "year": 1915,
-        "code": "013",
-        "disponibility": true
-    },
-    {
-        "id": "14",
-        "title": "Macunaíma",
-        "author": "Mário de Andrade",
-        "year": 1928,
-        "code": "014",
-        "disponibility": true
-    },
-    {
-        "id": "15",
-        "title": "A Hora da Estrela",
-        "author": "Clarice Lispector",
-        "year": 1977,
-        "code": "015",
-        "disponibility": false
-    }
+  {
+    "id": 1,
+    "title": "Dom Casmurro",
+    "author": "Machado de Assis",
+    "year": 1899,
+    "code": "001",
+    "disponibility": true
+  },
+  {
+    "id": 2,
+    "title": "O Alquimista",
+    "author": "Paulo Coelho",
+    "year": 1988,
+    "code": "002",
+    "disponibility": false
+  },
+  {
+    "id": 3,
+    "title": "Grande Sertão: Veredas",
+    "author": "João Guimarães Rosa",
+    "year": 1956,
+    "code": "003",
+    "disponibility": true
+  },
+  {
+    "id": 4,
+    "title": "Memórias Póstumas de Brás Cubas",
+    "author": "Machado de Assis",
+    "year": 1881,
+    "code": "004",
+    "disponibility": true
+  },
+  {
+    "id": 5,
+    "title": "A Moreninha",
+    "author": "Joaquim Manuel de Macedo",
+    "year": 1844,
+    "code": "005",
+    "disponibility": false
+  },
+  {
+    "id": 6,
+    "title": "Iracema",
+    "author": "José de Alencar",
+    "year": 1865,
+    "code": "006",
+    "disponibility": true
+  },
+  {
+    "id": 7,
+    "title": "Capitães da Areia",
+    "author": "Jorge Amado",
+    "year": 1937,
+    "code": "007",
+    "disponibility": false
+  },
+  {
+    "id": 8,
+    "title": "Vidas Secas",
+    "author": "Graciliano Ramos",
+    "year": 1938,
+    "code": "008",
+    "disponibility": true
+  },
+  {
+    "id": 9,
+    "title": "O Guarani",
+    "author": "José de Alencar",
+    "year": 1857,
+    "code": "009",
+    "disponibility": true
+  },
+  {
+    "id": 10,
+    "title": "Senhora",
+    "author": "José de Alencar",
+    "year": 1875,
+    "code": "010",
+    "disponibility": false
+  },
+  {
+    "id": 11,
+    "title": "O Cortiço",
+    "author": "Aluísio Azevedo",
+    "year": 1890,
+    "code": "011",
+    "disponibility": true
+  },
+  {
+    "id": 12,
+    "title": "A Escrava Isaura",
+    "author": "Bernardo Guimarães",
+    "year": 1875,
+    "code": "012",
+    "disponibility": false
+  },
+  {
+    "id": 13,
+    "title": "Triste Fim de Policarpo Quaresma",
+    "author": "Lima Barreto",
+    "year": 1915,
+    "code": "013",
+    "disponibility": true
+  },
+  {
+    "id": 14,
+    "title": "Macunaíma",
+    "author": "Mário de Andrade",
+    "year": 1928,
+    "code": "014",
+    "disponibility": true
+  },
+  {
+    "id": 15,
+    "title": "A Hora da Estrela",
+    "author": "Clarice Lispector",
+    "year": 1977,
+    "code": "015",
+    "disponibility": false
+  }
 ]

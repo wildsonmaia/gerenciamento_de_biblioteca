@@ -84,7 +84,7 @@ const RemoveBookModal = ({ visibility, onClose, onRemove, books }) => {
           padding: '10px',
         }}>
           {filteredBooks.length > 0 ? (
-            filteredBooks.map((book) => (
+            filteredBooks.map((book, index) => (
               <div
                 key={book.id}
                 style={{

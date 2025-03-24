@@ -4,6 +4,7 @@ const AddBookModal = ({ visibility, onClose, onAdd }) => {
 
   // Recebe os valores dos inputs (campos do formulário)
   const [formData, setFormData] = useState({
+    id: '',
     title: '',
     code: '',
     author: '',
@@ -25,7 +26,8 @@ const AddBookModal = ({ visibility, onClose, onAdd }) => {
       console.log('dados inválidos')
     } else {
       bookData = {
-        ...formData,
+        ...formData, 
+        id: parseInt(formData.code, 10) ,
         year: parseInt(formData.year, 10), // Converte o ano para número
         disponibility: formData.disponibility.toLowerCase() === 'true', // Converte disponibilidade para booleano
       };
