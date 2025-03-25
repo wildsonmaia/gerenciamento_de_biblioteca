@@ -23,7 +23,7 @@ const AddBookModal = ({ visibility, onClose, onAdd }) => {
     let bookData = ''
 
     if (formData.author == '' || formData.code == '' || formData.disponibility == '' || formData.title == '' || formData.year == '') {
-      console.log('dados inválidos')
+      alert('É necessário preencher todos os campos para cadastrar um livro!')
     } else {
       bookData = {
         ...formData, 

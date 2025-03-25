@@ -19,7 +19,7 @@ const BookCard = ({ book, onBorrow, onReturn, onUpdate }) => {
         <p><strong>Disponível:</strong> {book.disponibility ? 'Sim' : 'Não'}</p>
       </div>
 
-      {/* Botões de Emprestar e Devolver */}
+      {/* Botões de Emprestar ou Devolver e Atualizar Informações */}
       <div style={{ marginTop: '10px' }}>
         {book.disponibility ? (
           <button
@@ -56,7 +56,7 @@ const BookCard = ({ book, onBorrow, onReturn, onUpdate }) => {
           </button>
         )}
         <button
-          onClick={() => onUpdate(book.id, book)} // Chama a função de atualização
+          onClick={() => onUpdate(book.id, book)}
           style={{
             width: '100%',
             padding: '10px 15px',

@@ -3,32 +3,13 @@ const bodyParser = require("body-parser")
 const dados = require("./db.json")
 const router = express.Router()
 const jsonParser = bodyParser.json()
-
 const fs = require('fs');
 const path = require('path');
 
 // Caminho para o arquivo db.json
 const dbPath = path.join(__dirname, 'db.json');
 
-// Função para ler o conteúdo do arquivo
-const readDB = () => {
-    return new Promise((resolve, reject) => {
-        fs.readFile(dbPath, 'utf8', (err, data) => {
-            if (err) {
-                reject('Erro ao ler o arquivo: ' + err);
-            } else {
-                try {
-                    const db = JSON.parse(data);
-                    resolve(db);
-                } catch (parseError) {
-                    reject('Erro ao analisar o JSON: ' + parseError);
-                }
-            }
-        });
-    });
-};
-
-// Função para escrever no arquivo
+// Função para escrever no arquivo db.json
 const writeDB = (db) => {
     return new Promise((resolve, reject) => {
         fs.writeFile(dbPath, JSON.stringify(db, null, 2), (err) => {
@@ -41,33 +22,35 @@ const writeDB = (db) => {
     });
 };
 
+// Rota Home
 router.get("/", (req, res) => {
     res.send("Seja bem-vindo à nossa biblioteca!")
 })
 
+// Rota Listar Livros
 router.get("/livros", (req, res) => {
     res.send(dados)
 })
 
+// Rota Buscar Livro por Id
 router.get("/livros/:id", (req, res) => {
     const id = req.params.id
     res.send(dados[id - 1])
 })
 
+// Rota Cadastrar Livro
 router.post("/livros", jsonParser, async (req, res) => {
     try {
       const body = req.body;
-
       dados.push(body);
-      await writeDB(dados);
-  
+      await writeDB(dados);  
       res.status(201).send(body);
     } catch (error) {
       res.status(500).send({ message: "Erro ao adicionar o livro", error });
     }
   });
 
-  // PARA FAZER
+// Rota Atualizar Livro
 router.put("/livros/:id", jsonParser, async (req, res) => {
     try {
         const id = parseInt(req.params.id)
@@ -85,6 +68,7 @@ router.put("/livros/:id", jsonParser, async (req, res) => {
     }
 })
 
+// Rota Deletar Livro
 router.delete("/livros/:id", async (req, res) => {
     try {
       const id = parseInt(req.params.id);

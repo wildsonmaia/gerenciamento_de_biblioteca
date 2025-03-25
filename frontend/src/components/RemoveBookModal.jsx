@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 
 const RemoveBookModal = ({ visibility, onClose, onRemove, books }) => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [filter, setFilter] = useState('all'); // Estado para o filtro
+  const [filter, setFilter] = useState('all');
 
-  // Filtra os livros com base no termo de pesquisa e no filtro selecionado
+  // Lista dos livros após pesquisa e filtragem
   const filteredBooks = books.filter((book) => {
     const matchesSearch = searchTerm
       ? filter === 'all' || filter === 'title'
@@ -30,11 +30,11 @@ const RemoveBookModal = ({ visibility, onClose, onRemove, books }) => {
       left: 0,
       width: '100%',
       height: '100%',
-      backgroundColor: 'rgba(0, 0, 0, 0.5)', // Fundo semitransparente
+      backgroundColor: 'rgba(0, 0, 0, 0.5)',
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      zIndex: 1000, // Garante que o modal fique acima de outros elementos
+      zIndex: 1000,
     }}>
       <div style={{
         backgroundColor: '#fff',
@@ -42,7 +42,7 @@ const RemoveBookModal = ({ visibility, onClose, onRemove, books }) => {
         borderRadius: '5px',
         textAlign: 'center',
         width: '400px',
-        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)', // Sombra para destaque
+        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
       }}>
         <h3>Remover Livro</h3>
         <input

@@ -10,7 +10,7 @@ const Footer = () => {
       width: '100%',
       borderTop: '1px solid #e9ecef',
     }}>
-      <p style={{ margin: 0 }}>© 2025 Biblioteca. Todos os direitos reservados.</p>
+      <p style={{ margin: 0 }}>© 2025 Biblioteca CFT. Todos os direitos reservados.</p>
     </footer>
   );
 };

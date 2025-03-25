@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios'
 import BookCard from '../components/BookCard';
 import AddBookModal from '../components/AddBookModal';
 import RemoveBookModal from '../components/RemoveBookModal';
 import LendBookModal from '../components/LendBookModal';
-import axios from 'axios'
 import UpdateBookModal from '../components/UpdateBookModal';
 
 const Library = () => {
@@ -23,7 +23,6 @@ const Library = () => {
     try {
       const response = await axios.get('http://localhost:3000/livros');
       setBooks(response.data);
-      console.log(response);
     } catch (error) {
       console.error('Erro ao buscar livros:', error);
     }
@@ -34,7 +33,22 @@ const Library = () => {
     listBooks()
   }, [])
 
-  // Função para adicionar um novo livro
+  // Filtrar os livros com base na barra de pesquisa e no seletor de filtro
+  const filteredBooks = books.filter((book) => {
+    const matchesSearch = searchTerm
+      ? filter === 'all' || filter === 'title'
+        ? book.title.toLowerCase().includes(searchTerm.toLowerCase())
+        : filter === 'author'
+          ? book.author.toLowerCase().includes(searchTerm.toLowerCase())
+          : filter === 'year'
+            ? book.year.toString().includes(searchTerm)
+            : false
+      : true;
+
+    return matchesSearch;
+  });
+
+  // Função para adicionar um livro
   async function addBook(newBook){
     try {
       console.log(newBook)
@@ -47,6 +61,18 @@ const Library = () => {
     listBooks()    
   };
 
+  // Função para deletar um livro
+  async function removeBook(bookId){
+    try {
+      await axios.delete(`http://localhost:3000/livros/${bookId}`);
+      closeRemoveModal();
+    } catch (error) {
+      console.error('Erro ao remover livro:', error);
+    }
+    listBooks()
+  };
+
+  // Função para atualizar um livro
   async function updateBook(updatedBook){
     try {
       await axios.put(`http://localhost:3000/livros/${updatedBook.id}`, updatedBook);
@@ -58,36 +84,23 @@ const Library = () => {
     }
   }
 
-  async function removeBook(bookId){
-    try {
-      await axios.delete(`http://localhost:3000/livros/${bookId}`);
-      closeRemoveModal();
-    } catch (error) {
-      console.error('Erro ao remover livro:', error);
-    }
-    listBooks()
-  };
-  // Filtrar os livros com base na barra de pesquisa e no seletor de filtro
-  const filteredBooks = books.filter((book) => {
-    return book
-    /* const matchesSearch = book.title.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesFilter = filter === 'all' || book.category === filter;
-    return matchesSearch && matchesFilter; */
-  });
-
+  // Função fechar modal de Cadastro de Livro
   function closeAddModal(){
     setShowAddModal(false)
   }
 
+  // Função fechar modal de Remoção de Livro
   function closeRemoveModal(){
     setShowRemoveModal(false)
   }
 
+  // Função fechar modal de Atualização de Informações do Livro
   function closeUpdateModal(){
     setShowUpdateModal(false)
   }
 
-  const lendBook = async (bookId) => {
+  // Função para emprestar livro
+  async function lendBook(bookId){
     try {
       // Encontra o livro a ser emprestado
       const bookToLend = books.find((book) => book.id === bookId);
@@ -108,8 +121,28 @@ const Library = () => {
     }
   };
 
+  // Função para devolver livro
+  async function returnBook(bookId){
+    try {
+      // Encontra o livro a ser devolvido
+      const bookToReturn = books.find((book) => book.id === bookId);
+      if (!bookToReturn || bookToReturn.disponibility) {
+        alert('Este livro já está disponível.');
+        return;
+      }
+  
+      // Atualiza a disponibilidade do livro para "true"
+      const updatedBook = { ...bookToReturn, disponibility: true };
+      updateBook(updatedBook);
+      alert(`O livro "${bookToReturn.title}" foi devolvido com sucesso.`);
+    } catch (error) {
+      console.error('Erro ao devolver livro:', error);
+    }
+  };
+
   return (
-    <div style={{ padding: '20px' }}>
+    <div style={{ padding: '20px',  }}>
+
       {/* Barra de Pesquisa */}
       <div style={{ marginBottom: '20px', display: 'flex', gap: '10px' }}>
         <input
@@ -136,10 +169,9 @@ const Library = () => {
             borderRadius: '5px',
           }}
         >
-          <option value="all">Todos</option>
-          <option value="Fantasia">Fantasia</option>
-          <option value="Ficção Científica">Ficção Científica</option>
-          <option value="Clássico">Clássico</option>
+          <option value="title">Título</option>
+          <option value="author">Autor</option>
+          <option value="year">Ano de publicação</option>
         </select>
       </div>
 
@@ -190,6 +222,7 @@ const Library = () => {
               setSelectedBook(book); // Define o livro selecionado
               setShowLendBookModal(true);
             }}
+            onReturn={() => returnBook(book.id)}
             onUpdate={() => {
               setSelectedBook(book)
               setShowUpdateModal(true)
@@ -197,6 +230,8 @@ const Library = () => {
           />
         ))}
       </div>
+
+      {/* Modal Cadastrar Livro  */}
       {showAddModal && 
         <AddBookModal 
           visibility={showAddModal} 
@@ -204,6 +239,8 @@ const Library = () => {
           onAdd={addBook} 
           />
       }
+
+      {/* Modal Deletar Livro  */}
       {showRemoveModal && 
         <RemoveBookModal 
         visibility={showRemoveModal} 
@@ -212,6 +249,8 @@ const Library = () => {
         books={books} 
         />
       }
+
+      {/* Modal Atualizar Livro  */}
       {showUpdateModal && 
         <UpdateBookModal
           visibility={showUpdateModal} 
@@ -220,6 +259,8 @@ const Library = () => {
           book={selectedBook}
         />
       }
+
+      {/* Modal Emprestar Livro  */}
       {showLendBookModal && (
         <LendBookModal
           visibility={showLendBookModal}
