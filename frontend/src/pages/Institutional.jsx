@@ -4,11 +4,12 @@ const Institutional = () => {
   return (
     <div style={{
       padding: '40px',
-      fontFamily: 'Arial, sans-serif',
+      margin: '20px',
       lineHeight: '1.8',
-      backgroundColor: '#f9f9f9',
+      backgroundColor: '#e9ecef',
       color: '#333',
-      textAlign: 'center'
+      textAlign: 'center',
+      borderRadius: 10
     }}>
       <h1 style={{
         textAlign: 'center',
