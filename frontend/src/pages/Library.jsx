@@ -5,12 +5,14 @@ import AddBookModal from '../components/AddBookModal';
 import RemoveBookModal from '../components/RemoveBookModal';
 import LendBookModal from '../components/LendBookModal';
 import UpdateBookModal from '../components/UpdateBookModal';
+import ReturnBookModal from '../components/ReturnBookModal';
 
 const Library = () => {
 
   const [books, setBooks] = useState([]);
   let [selectedBook, setSelectedBook] = useState(null);
   const [ showLendBookModal, setShowLendBookModal ] = useState(false)
+  const [ showReturnModal, setShowReturnModal ] = useState(false);
 
   const [searchTerm, setSearchTerm] = useState('');
   const [filter, setFilter] = useState('all');
@@ -51,7 +53,6 @@ const Library = () => {
   // Função para adicionar um livro
   async function addBook(newBook){
     try {
-      console.log(newBook)
       await axios.post('http://localhost:3000/livros', newBook);
       closeAddModal();
     } catch (error) {
@@ -115,7 +116,7 @@ const Library = () => {
   
       // Atualiza o estado local com o livro atualizado
       setBooks(books.map((book) => (book.id === bookId ? updatedBook : book)));
-      /* alert(`O livro "${bookToLend.title}" foi emprestado com sucesso.`); */
+      setShowLendBookModal(false); // Fecha o modal após o empréstimo
     } catch (error) {
       console.error('Erro ao emprestar livro:', error);
     }
@@ -134,7 +135,7 @@ const Library = () => {
       // Atualiza a disponibilidade do livro para "true"
       const updatedBook = { ...bookToReturn, disponibility: true };
       updateBook(updatedBook);
-      alert(`O livro "${bookToReturn.title}" foi devolvido com sucesso.`);
+      setShowReturnModal(false)
     } catch (error) {
       console.error('Erro ao devolver livro:', error);
     }
@@ -222,7 +223,10 @@ const Library = () => {
               setSelectedBook(book); // Define o livro selecionado
               setShowLendBookModal(true);
             }}
-            onReturn={() => returnBook(book.id)}
+            onReturn={() => {
+              setSelectedBook(book)
+              setShowReturnModal(true)}
+            }
             onUpdate={() => {
               setSelectedBook(book)
               setShowUpdateModal(true)
@@ -267,9 +271,18 @@ const Library = () => {
           onClose={() => setShowLendBookModal(false)}
           onLend={(bookId) => {
             lendBook(bookId); // Função para emprestar o livro
-            setShowLendBookModal(false); // Fecha o modal após o empréstimo
           }}
           book={selectedBook} // Passa o livro selecionado para o modal
+        />
+      )}
+
+      {/* Modal Devolver Livro  */}
+      {showReturnModal && (
+        <ReturnBookModal
+          visibility={showReturnModal}
+          onClose={() => setShowReturnModal(false)}
+          onReturn={returnBook}
+          book={selectedBook}
         />
       )}
     </div>
