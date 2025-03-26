@@ -29,7 +29,7 @@
     "author": "Machado de Assis",
     "year": 1881,
     "code": "004",
-    "disponibility": false
+    "disponibility": true
   },
   {
     "id": 5,
@@ -37,7 +37,7 @@
     "author": "Joaquim Manuel de Macedo",
     "year": 1844,
     "code": "005",
-    "disponibility": false
+    "disponibility": true
   },
   {
     "id": 6,
@@ -45,7 +45,7 @@
     "author": "José de Alencar",
     "year": 1865,
     "code": "006",
-    "disponibility": true
+    "disponibility": false
   },
   {
     "id": 7,
@@ -69,7 +69,7 @@
     "author": "José de Alencar",
     "year": 1857,
     "code": "009",
-    "disponibility": false
+    "disponibility": true
   },
   {
     "id": 10,
@@ -77,7 +77,7 @@
     "author": "José de Alencar",
     "year": 1875,
     "code": "010",
-    "disponibility": true
+    "disponibility": false
   },
   {
     "id": 11,
@@ -85,7 +85,7 @@
     "author": "Aluísio Azevedo",
     "year": 1890,
     "code": "011",
-    "disponibility": false
+    "disponibility": true
   },
   {
     "id": 12,
@@ -93,7 +93,7 @@
     "author": "Bernardo Guimarães",
     "year": 1875,
     "code": "012",
-    "disponibility": true
+    "disponibility": false
   },
   {
     "id": 13,
@@ -120,11 +120,19 @@
     "disponibility": false
   },
   {
-    "id": 16,
-    "title": "A Última Carta",
-    "code": "016",
-    "author": "Higor Marques",
+    "id": 22,
+    "title": "Programação",
+    "code": "022",
+    "author": "Cadu",
     "year": 2025,
+    "disponibility": true
+  },
+  {
+    "id": 25,
+    "title": "JavaScript",
+    "code": "025",
+    "author": "John Hook",
+    "year": 2019,
     "disponibility": false
   }
 ]
