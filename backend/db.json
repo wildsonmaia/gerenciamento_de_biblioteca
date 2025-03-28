@@ -1,13 +1,5 @@
 [
   {
-    "id": 1,
-    "title": "Dom Casmurro",
-    "author": "Machado de Assis",
-    "year": 1899,
-    "code": "001",
-    "disponibility": true
-  },
-  {
     "id": 2,
     "title": "O Alquimista",
     "author": "Paulo Coelho",
@@ -21,7 +13,7 @@
     "author": "João Guimarães Rosa",
     "year": 1956,
     "code": "003",
-    "disponibility": false
+    "disponibility": true
   },
   {
     "id": 4,
@@ -45,7 +37,7 @@
     "author": "José de Alencar",
     "year": 1865,
     "code": "006",
-    "disponibility": false
+    "disponibility": true
   },
   {
     "id": 7,
@@ -85,7 +77,7 @@
     "author": "Aluísio Azevedo",
     "year": 1890,
     "code": "011",
-    "disponibility": true
+    "disponibility": false
   },
   {
     "id": 12,
@@ -93,7 +85,7 @@
     "author": "Bernardo Guimarães",
     "year": 1875,
     "code": "012",
-    "disponibility": false
+    "disponibility": true
   },
   {
     "id": 13,
@@ -133,6 +125,14 @@
     "code": "025",
     "author": "John Hook",
     "year": 2019,
+    "disponibility": false
+  },
+  {
+    "id": 30,
+    "title": "Bola de Queijo",
+    "code": "030",
+    "author": "Regis",
+    "year": 2013,
     "disponibility": false
   }
 ]
