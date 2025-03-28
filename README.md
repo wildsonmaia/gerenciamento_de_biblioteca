@@ -1,6 +1,6 @@
 # Biblioteca CFT
 
-Biblioteca CFT é um gerenciador de biblioteca que oferece recursos básicos para as atividades diárias de uma biblioteca.
+Biblioteca CFT é um site que gerencia e oferece recursos básicos para as atividades diárias de uma biblioteca.
 
 ## Colaboradores
 - Carlos Eduardo Maciel Cardoso
