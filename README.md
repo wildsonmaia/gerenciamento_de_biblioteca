@@ -1,6 +1,6 @@
 # Biblioteca CFT
 
-Biblioteca CFT é um gerenciador de biblioteca que oferece recursos básicos para as atividades diárias de uma biblioteca.
+Biblioteca CFT é um site que gerencia e oferece recursos básicos para as atividades diárias de uma biblioteca.
 
 ## Colaboradores
 - Carlos Eduardo Maciel Cardoso
@@ -33,30 +33,30 @@ Biblioteca CFT utiliza:
 ## Configuração do Backend
 
 - Instalar as dependências:
-    -- Criar diretório:
-    ``
-    mkdir [nome_diretório]
-    ``
-    -- Adicionar arquivo package.json:
-    ``
-    npm init -y
-    ``
-    -- Instalar node_modules:
-    ``
-    npm i
-    ``
-    -- Instalar express:
-    ``
-    npm i express
-    ``
-    -- Instalar nodemon:
-    ``
-    npm i nodemon
-    ``
+    - Criar diretório:
+        ```sh
+        mkdir [nome_diretório]
+        ```
+    - Adicionar arquivo package.json:
+        ```sh
+        npm init -y
+        ```
+    - Instalar node_modules:
+        ```sh
+        npm i
+        ```
+    - Instalar express:
+        ```sh
+        npm i express
+        ```
+    - Instalar nodemon:
+        ```sh
+        npm i nodemon
+        ```
 - Criar os arquivos: server.js, router.js e db.json
- -- server.js: Configurar o servidor
- -- router.js: Configurar as rotas de requisições
- -- db.json: Simular o banco de dados
+    - server.js: Configurar o servidor
+    - router.js: Configurar as rotas de requisições
+    - db.json: Simular o banco de dados
 - Adicionar ao package.json:
     ```sh
     "scripts": {
@@ -93,40 +93,40 @@ localhost:3000
 
 ## Configuração do  Frontend
 - Criar pasta frontend:
-   ``
-   npm create vite@latest
-   ``
+    ```sh
+    npm create vite@latest
+    ```
    Nas configurações, nomear a pasta como 'frontend'
 
 - Instalar as dependências:
-   Para acessar a pasta frontend:
-   ``
-   cd frontend
-   ``
-   Para instalar o axios:
-   ``
+   - Para acessar a pasta frontend:
+    ```sh
+    cd frontend
+    ```
+   - Para instalar o axios:
+    ```sh
    npm i axios
-   ``
-   Para acessar a pasta react-router:
-   ``
+    ```
+   - Para acessar a pasta react-router:
+    ```sh
    npm i react-router
-   ``
-   Para acessar a pasta body-parser:
-   ``
+    ```
+   - Para acessar a pasta body-parser:
+    ```sh
    npm i body-parser
-   ``
+    ```
 
-- Iniciar projeto:
-   ``
+    - Iniciar projeto:
+    ```sh
    npm run dev
-   ``
+    ```
 
 - Estruturar projeto:
-   -- Adicionar uma pasta src
-   -- Dentro de src, adicionar três pastas: pages, components e router
-   -- Pasta pages: que terão o conteúdo principal de cada página do site
-   -- Pasta components: arquivos que serão reutilizados pelas páginas
-   -- Pasta router: configuração das rotas das páginas do site
+   - Adicionar uma pasta src
+   - Dentro de src, adicionar três pastas: pages, components e router
+   - Pasta pages: que terão o conteúdo principal de cada página do site
+   - Pasta components: arquivos que serão reutilizados pelas páginas
+   - Pasta router: configuração das rotas das páginas do site
    
 ## Licença
 
